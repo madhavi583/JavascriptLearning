@@ -8,13 +8,43 @@ var Employee = {
   name: 'abc',
   designation: 'developer'
 }
-
-console.log(delete Employee.name);   // returns true
+alert(delete Employee.name);
+//console.log(delete Employee.name);   // returns true
 console.log(delete Employee.age);    // returns true
 
 // When trying to delete a property that does 
 // not exist, true is returned 
 console.log(delete Employee.salary); // returns true
+//delete and the prototype chain
+function Foo() {
+  this.bar = 10;
+}
+
+Foo.prototype.bar = 42;
+
+var foo = new Foo();
+
+// Returns true, since the own property
+// has been deleted on the foo object
+delete foo.bar;           
+
+// foo.bar is still available, since it 
+// is available in the prototype chain.
+console.log(foo.bar);
+
+// We delete the property on the prototype
+delete Foo.prototype.bar; 
+
+// logs "undefined" since the property
+// is no longer inherited
+console.log(foo.bar);
+//Deleting array elements
+var trees = ['redwood', 'bay', 'cedar', 'oak', 'maple'];
+delete trees[3];
+if (3 in trees) {
+    // this does not get executed
+	alert(delete trees[3]);
+}
 </script>
 </body>
 </html>
