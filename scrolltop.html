@@ -1,0 +1,47 @@
+<!doctype html>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<body>
+
+<div style="height:1000px"></div>
+
+<p id="output" style="position:fixed; left:0; top:0; padding:10px; font-weight:bold">
+	You have scrolled the page by:
+</p>
+
+<script>
+
+var output = document.getElementById('output')
+
+window.addEventListener("scroll", function(){
+	var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+	output.innerHTML = 'You have scrolled the page by: ' + scrollTop +'px'
+
+}, false)
+
+</script>
+
+
+
+
+<script>
+
+/* ### jQuery version below. Uncomment to see: ### */
+
+/*
+
+var $output = $('#output')
+
+$(window).on('scroll', function(){
+	var scrollTop = $(window).scrollTop()
+	$output.html( 'You have scrolled the page by: ' + scrollTop +'px' )
+})
+
+*/
+
+</script>
+
+
+</body>
+	

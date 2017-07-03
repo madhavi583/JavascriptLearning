@@ -1,0 +1,226 @@
+<html>
+<head>
+<style>
+#boxcontainer {
+  display: flex;
+}
+
+#boxcontainer > div.boxes {
+  margin-right: 10px;
+  transition: all .5s;
+}
+
+#boxcontainer div.boxes {
+  width: 70px;
+  height: 70px;
+  background: navy;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  opacity: 0;
+  margin-bottom: 1em;
+}
+
+#boxcontainer.openbox > div.boxes {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: all .5s;
+}
+#abutton{
+    width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    background: #eee;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    font-size: 110%;
+    overflow: hidden;
+    border: 1px solid gray;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#abutton:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 6px;
+    background: green;
+    transition: all .5s;
+}
+
+#abutton.uploaded:after{
+    width: 100%;
+}
+#bucket{
+  width: 250px;
+  height: 120px;
+  background: white;
+  border: 10px solid black;
+  border-top-width: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+#bucket #water{
+  content: '';
+  position: absolute;
+  background: lightblue;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate3d(0,100%,0);
+  transform: translate3d(0,100%,0);
+}
+
+#bucket.fillit #water{
+  -webkit-animation: fillwater 3s ease-in-out forwards infinite;
+  animation: fillwater 3s ease-in-out forwards infinite;
+}
+
+@-webkit-keyframes fillwater{
+    100%{-webkit-transform: translate3d(0,0,0)}
+}
+ 
+@keyframes fillwater{
+    100%{transform: translate3d(0,0,0)}
+}
+
+#bucketcount{
+  font: bold 80px Arial;
+  text-align: center;
+    position: relative;
+    z-index: 2;
+}
+.notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
+</style>
+<script type="text/javascript">
+function getcss3prop(cssprop) {
+  var css3vendors = ['', '-moz-', '-webkit-', '-o-', '-ms-', '-khtml-']
+  var root = document.documentElement
+
+  function camelCase(str) {
+    return str.replace(/\-([a-z])/gi, function(match, p1) { // p1 references submatch in parentheses
+      return p1.toUpperCase() // convert first letter after "-" to uppercase
+    })
+  }
+  for (var i = 0; i < css3vendors.length; i++) {
+    var css3propcamel = camelCase(css3vendors[i] + cssprop)
+    if (css3propcamel.substr(0, 2) == 'Ms') // if property starts with 'Ms'
+      css3propcamel = 'm' + css3propcamel.substr(1) // Convert 'M' to lowercase
+    if (css3propcamel in root.style)
+      return css3propcamel
+  }
+  return undefined
+}
+
+var transitionDelay = getcss3prop('transition-delay')
+
+var boxes = document.querySelectorAll('.boxes')
+if (transitionDelay) {
+  for (var i = 0; i < boxes.length; i++) {
+    boxes[i].style[transitionDelay] = 0.5 * i + 's'
+  }
+}
+//Detecting when a transition has ended
+var abutton = document.getElementById('abutton')
+
+function gettransitionend(){
+    var root = document.documentElement
+    var transitions = {
+        'transition':'transitionend',
+        'OTransition':'oTransitionEnd',
+        'MozTransition':'transitionend',
+        'WebkitTransition':'webkitTransitionEnd'
+        }
+    
+    for (var t in transitions){
+        if (root.style[t] !== undefined ){
+            return transitions[t];
+        }
+    }
+    return undefined
+}
+
+//Example Usage:
+var transitionendevt = gettransitionend()
+if (transitionendevt){ // if transitionend event supported by browser
+    abutton.addEventListener(transitionendevt, function(e){
+        var isuploaded = this.classList.contains('uploaded')
+        alert(isuploaded? 'File Uploaded' : 'File Unloaded')    
+    }, false)
+}
+//Detecting when a CSS keyframe animation has started, iterated, or ended
+function getanimationevent(suffix){ // enter "start", "iteration", or "end"
+    var root = document.documentElement
+    var suffix = suffix.toLowerCase()
+    var animations = {
+        'animation': 'animation' + suffix,
+        'OAnimation': 'oAnimation' + suffix.charAt(0).toUpperCase() + suffix.slice(1), // capitalize first letter of suffix
+        'MozAnimation': 'animation' + suffix,
+        'WebkitAnimation': 'webkitAnimation' + suffix.charAt(0).toUpperCase() + suffix.slice(1)
+    }
+     
+    for (var a in animations){
+        if (root.style[a] !== undefined ){
+            return animations[a]
+        }
+    }
+    return undefined
+}
+ 
+// getanimationevent('start') // returns supported version of "animationstart" event as a string
+// getanimationevent('iteration') // returns supported version of "animationiteration" event as a string
+// getanimationevent('end') // returns supported version of "animationend" event as a string
+ 
+//Example usage:
+var water = document.getElementById('water')
+var bucketcount = document.getElementById('bucketcount')
+var curcount = 0
+var animationiteration = getanimationevent('iteration')
+if (animationiteration){
+    water.addEventListener(animationiteration , function(e){
+        bucketcount.innerText = ++curcount
+    }, false)
+}
+// Disabling a CSS transition temporarily
+
+targetel.classList.add('notransition') // disable transitions
+targetel.style.left = '10px' // update "left" property but don't transition it
+targetel.offsetHeight // Trigger a reflow, flushing the CSS changes
+targetel.classList.remove('notransition') // enable transitions again
+targetel.style.left = '500px' // transition "left" property again
+</script>
+</head>
+
+<body>
+<div id="boxcontainer">
+  <div class="boxes"></div>
+  <div class="boxes"></div>
+  <div class="boxes"></div>
+  <div class="boxes"></div>
+  <div class="boxes"></div>
+</div>
+
+<button onClick="document.getElementById('boxcontainer').classList.toggle('openbox')">Show/ Hide</button>
+<button id="abutton" onClick="this.classList.toggle('uploaded')">Click Me</button>
+
+<div id="bucket">
+<div id="water"></div>
+<div id="bucketcount">0</div>
+</div>
+
+<p>
+<button onClick="document.getElementById('bucket').classList.add('fillit')">Fill With Water</button>
+</p>
+</body>
+</html>
