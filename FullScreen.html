@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+
+/*var globalreqfullscreen = getreqfullscreen() // get supported version of requestFullscreen()
+    document.addEventListener('click', function(e){
+    var target = e.target
+    if (target.tagName == "IMG" && target.classList.contains('canfullscreen')){
+        globalreqfullscreen.call(target) 
+    }
+}, false)*/
+Var featuredimg = document.getElementById("rockyshot")
+If (featuredimg.requestFullscreen){
+    featuredimg.requestFullscreen() 
+}
+console.log(featuredimg);
+
+</script>
+<div id="rockyshot"><img src="http://localhost/javascript/images/donate_banner.jpg">hello madhavi</div>
+<!--<div><img src="http://localhost/javascript/images/donate_banner.jpg"></div>-->
+
+</body>
+</html>
