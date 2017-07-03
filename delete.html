@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+var Employee = {
+  age: 28,
+  name: 'abc',
+  designation: 'developer'
+}
+
+console.log(delete Employee.name);   // returns true
+console.log(delete Employee.age);    // returns true
+
+// When trying to delete a property that does 
+// not exist, true is returned 
+console.log(delete Employee.salary); // returns true
+</script>
+</body>
+</html>
