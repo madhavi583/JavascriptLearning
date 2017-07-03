@@ -1,5 +1,10 @@
 <html>
 <head>
+<style>
+table, td {
+    border: 1px solid black;
+}
+</style>
 </head>
 <body>
 <script type="text/javascript">
@@ -15,6 +20,7 @@ console.log(delete Employee.age);    // returns true
 // When trying to delete a property that does 
 // not exist, true is returned 
 console.log(delete Employee.salary); // returns true
+
 //delete and the prototype chain
 function Foo() {
   this.bar = 10;
@@ -46,5 +52,29 @@ if (3 in trees) {
 	alert(delete trees[3]);
 }
 </script>
+<!-- How to detect row-->
+<table id="myTable">
+<tr>
+  <td>Row 1</td>
+  <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+</tr>
+<tr>
+  <td>Row 2</td>
+  <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+</tr>
+<tr>
+  <td>Row 3</td>
+  <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+</tr>
+</table>
+
+<script>
+function deleteRow(r) {
+    var i = r.parentNode.parentNode.rowIndex;
+    document.getElementById("myTable").deleteRow(i);
+}
+</script>
+
+
 </body>
 </html>
