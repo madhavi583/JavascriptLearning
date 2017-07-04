@@ -1,0 +1,33 @@
+<script>
+function http(url,method)
+{
+var promise = new Promise(function(resolve,reject){
+var data ='The New data answer';
+if(data)
+{
+resolve(data);
+}
+else
+{
+reject('no data');
+}
+});
+return  promise;
+}
+http('https://www.google.com/','GET')
+.then(function(data){
+return data.toUpperCase();
+})
+.then(function(modifiedData){
+console.log(modifiedData);
+return modifiedData; 
+})
+.then(function(data){
+console.log(data);
+//return data; 
+})
+.catch(function(err){
+console.log('Catch',err);
+
+})
+</script>
