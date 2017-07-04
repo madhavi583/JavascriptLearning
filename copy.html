@@ -1,0 +1,17 @@
+<html>
+<head><title>Reading and copying selected text to clipboard using JavaScript</title></head>
+<body>
+<h4>Reading and copying selected text to clipboard using JavaScript</h4>
+<textarea id="name" name="name" rows="10" ></textarea> 
+<script>
+['cut','copy','paste'].forEach(function(event){
+document.addEventListener(event,function(e){
+console.log(event);
+console.log(e);
+});
+});
+
+
+</script>
+</body>
+</html>
