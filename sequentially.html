@@ -1,0 +1,38 @@
+
+<script>
+var doggyplayground = document.getElementById('doggyplayground')
+var doggies = ['dog1.png', 'dog2.png', 'dog3.png', 'dog4.png', 'dog5.png']
+ 
+function displayimages(images){
+    var targetimage = images.shift() // process doggies images one at a time
+    if (targetimage){ // if not end of array
+        getImage(targetimage).then(function(url){ // load image then...
+            var dog = document.createElement('img')
+            dog.setAttribute('src', url)
+            doggyplayground.appendChild(dog) // add image to DIV
+            displayimages(images) // recursion- call displayimages() again to process next image/doggy
+        }).catch(function(url){ // handle an image not loading
+            console.log('Error loading ' + url)
+            displayimages(images) // recursion- call displayimages() again to process next image/doggy
+        })
+    }
+}
+ 
+displayimages(doggies)
+
+/*var doggies = ['dog1.png', 'dog2.png', 'dog3.png', 'dog4.png', 'dog5.png']
+var doggypromises = doggies.map(getImage) // call getImage on each array element and return array of promises
+ 
+Promise.all(doggypromises).then(function(urls){
+    for (var i=0; i<urls.length; i++){
+        var dog = document.createElement('img')
+        dog.setAttribute('src', urls[i])
+        doggyplayground.appendChild(dog)
+    }
+}).catch(function(urls){
+    console.log("Error fetching some images: " + urls)
+})*/
+</script>
+<div id="doggyplayground" ></div>
+<p align="left">
+<button onclick="displayimages()">Get images</button></p>
