@@ -1,0 +1,28 @@
+<html>
+<head>
+</head>
+<body>
+<form name="mycombo">
+<p><select name="example" size="1">
+<option value="https://indiagateway.net">indiagateway</option>
+<option value="https://tentindia.org/">tentindia</option>
+<option value="https://mahasatguru.com/">mahasatguru</option>
+<option value="http://www.javascriptkit.com">JavaScript Kit</option>
+<option value="http://www.codingforums.com">Coding Forums</option>
+<option value="http://www.dynamicdrive.com">Dynamic Drive</option>
+</select></p>
+ 
+<script type="text/javascript">
+<!--
+function go(){
+location=
+document.mycombo.example.
+options[document.mycombo.example.selectedIndex].value
+}
+//-->
+</script>
+ 
+<input type="button" name="test" value="Go!" onClick="go()">
+</form>
+</body>
+</html>
