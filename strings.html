@@ -1,0 +1,33 @@
+<script type="text/javascript">
+//alerts the length of a string
+var sitename="JavaScript Kit"
+alert(sitename.length) //alerts 19
+var message="Welcome to our site!"
+document.write(message)
+document.write("</br>")
+var message="Welcome to our site!"
+document.write(message.toUpperCase().bold())
+document.write("</br>")
+var message="Welcome to our site!"
+var format=message.toUpperCase()
+var size=1
+for (i=0;i<message.length;i++){ //go through the message, letter by letter
+    document.write(format.charAt(i).fontsize(size).bold())
+    if (size<7)
+        size++
+    else
+        size=1
+}
+document.write("</br>")
+var message="Welcome to our site!"
+var format=message.toUpperCase().bold()
+var size=1
+//go through the message, letter by letter
+for (i=0;i<format.length;i++){
+    document.write(format.charAt(i).fontsize(size))
+    if (size<7)
+        size++
+    else
+        size=1
+}
+</script>
