@@ -1,0 +1,8 @@
+name|grade
+~George Chiang~|~83%~
+~Bill Larson~|~69%~
+~Jimmy Lin~|~94%~
+~Mary Miller~|~59%~
+~Jane Wood~|~89%~
+~Terry Gray~|~72%~
+~Andrew Dart~|~82%~
