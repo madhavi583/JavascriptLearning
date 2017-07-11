@@ -1,0 +1,29 @@
+<script>
+var Foo = { "greeting": "Hello" }, Bar;
+Bar = Foo;
+Bar.greeting = "Hello World";
+console.log(Foo.greeting);
+</script>
+<script>
+/*Constructor.prototype = {
+    foo: null,
+
+    /*set bar: function(val){
+        this._bar = val;
+    },
+
+    get bar: function(val){
+        return this._bar;
+    }
+};*/
+var Test = (function(){
+     var Constructor = function(message,obj) {
+          console.log(message);
+          this.obj = obj;
+     };
+     return new Constructor(
+          "Hello World!",
+          { "foo": "bar" }
+     );
+}());
+</script>
