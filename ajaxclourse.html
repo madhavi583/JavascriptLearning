@@ -1,0 +1,52 @@
+<script>
+
+
+function foo(bar) {
+    for(var i = 0; i < 3; i++) {
+        $.ajax({
+            type : "GET",
+            url : ajaxobj.html,
+            dataType : "jsonp",
+            success : callback(i)
+        });
+    }
+};
+var callback = function(index) {
+    return function(data) {
+        console.log(index + ":" + data);
+    }
+} 
+var foo = (function() {
+    var privateVar = 0;
+    function privateFunc() {
+        privateVar++;
+    }
+    return {
+        publicGet: function() {
+            return privateVar;
+        },
+        publicSet: function() {
+            privateFunc();
+        }
+    }
+})();
+
+console.log(foo.publicGet); // 0
+console.log(foo.publicSet);
+console.log(foo.publicGet); // 1
+
+function foo1 (callback){
+    $.ajax({
+    type:"POST",
+    url:"javascript/invoice.php",
+    data: dataString,
+    success: callback
+    });//end ajax
+    alert (dada);
+}
+
+function mycallback (result){
+    array=result.split('/');
+    alert(dada);
+}
+</script>
