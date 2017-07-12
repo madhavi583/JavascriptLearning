@@ -1,0 +1,112 @@
+<script>
+function pam() {
+    var name = "Pam Beesly";
+    function displayName() {
+        alert (name);
+    }
+    function setName(newName) {
+        name = newName;
+    }
+    displayName();
+    setName("Pam Halpert");
+    displayName();
+}
+pam();
+// another example
+function dwightJob(title) {
+    return function(prefix) {
+        return prefix + ' ' + title;
+    };
+}
+
+var sales = dwightJob('Salesman');
+var manager = dwightJob('Manager');
+
+alert(sales('Top'));  // Top Salesman
+alert(manager('Assistant to the Regional')); // Assistant to the Regional Manager
+alert(manager('Regional')); // Regional Manager
+// by using module pattern
+var dwightSalary = (function() {
+    var salary = 60000;
+    function changeBy(amount) {
+        salary += amount;
+    }
+    return {
+        raise: function() {
+            changeBy(5000);
+        },
+        lower: function() {
+            changeBy(-5000);
+        },
+        currentAmount: function() {
+            return salary;
+        }
+    }; 
+})();
+
+alert(dwightSalary.currentAmount()); // $60,000
+dwightSalary.raise();
+alert(dwightSalary.currentAmount()); // $65,000
+dwightSalary.lower();
+dwightSalary.lower();
+alert(dwightSalary.currentAmount()); // $55,000
+
+//dwightSalary.changeBy(10000) // TypeError: undefined is not a function
+/*function foo(bar, baz) {
+    $.ajax({
+        type : "GET",
+        url : bar,
+        dataType : "jsonp",
+        success : function(data) {
+            callback(data, baz);
+        }
+    }); 
+};
+var callback = function(data, baz) {
+    console.log(baz + ":" + data);
+	console.log('hello madhavi');
+} 
+console.log('hello madhavi');*/
+function foo(bar, baz) {
+    $.ajax({
+        type : "GET",
+        url : bar,
+        dataType : "jsonp",
+        success : callback(baz)
+    }); 
+};
+var callback = function(baz) {
+    return function(data) {
+        console.log(baz + ":" + data);
+    }
+} 
+//Closure in a for-loop example:
+/*function foo() {
+    var bar = [a,b,c];
+    for (var i = 0; i < bar.length; i++) {
+        var baz = bar[i];
+        baz.onclick = (function(index) {
+            retrun function() {
+                console.log(index);
+            }
+        })(i);
+    }
+}
+foo();*/ // 0,1,2
+//4) Ajax in a for-loop closure example: 
+function foo(bar) {
+    for(var i = 0; i < 3; i++) {
+        $.ajax({
+            type : "GET",
+            url : bar,
+            dataType : "jsonp",
+            success : callback(i)
+        });
+    }
+};
+var callback = function(index) {
+    return function(data) {
+        console.log(index + ":" + data);
+    }
+} 
+</script>

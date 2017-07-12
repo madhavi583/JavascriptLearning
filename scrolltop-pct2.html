@@ -1,0 +1,59 @@
+<!doctype html>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<div style="height:1000px"></div>
+
+<p id="output" style="position:fixed; left:0; top:0; padding:10px; font-weight:bold">
+	You have scrolled the page by:
+</p>
+
+
+
+<script>
+
+var output = document.getElementById('output')
+
+function getDocHeight() {
+    var D = document;
+    return Math.max(
+        D.body.scrollHeight, D.documentElement.scrollHeight,
+        D.body.offsetHeight, D.documentElement.offsetHeight,
+        D.body.clientHeight, D.documentElement.clientHeight
+    )
+}
+
+var winheight, docheight, trackLength, throttlescroll
+
+function getmeasurements(){
+	winheight= window.innerHeight || (document.documentElement || document.body).clientHeight
+	docheight = getDocHeight()
+	trackLength = docheight - winheight
+}
+
+function amountscrolled(){
+	var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+	var pctScrolled = Math.floor(scrollTop/trackLength * 100) // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
+	output.innerHTML = pctScrolled + '% scrolled'
+}
+
+getmeasurements()
+
+window.addEventListener("resize", function(){
+	getmeasurements()
+}, false)
+
+window.addEventListener("scroll", function(){
+	clearTimeout(throttlescroll)
+		throttlescroll = setTimeout(function(){ // throttle code inside scroll to once every 50 milliseconds
+		amountscrolled()
+	}, 50)
+}, false)
+
+
+</script>
+
+
+
+
+	

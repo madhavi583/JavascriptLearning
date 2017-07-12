@@ -1,0 +1,69 @@
+<!doctype html>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<div style="height:1000px"></div>
+
+<p id="output" style="position:fixed; left:0; top:0; padding:10px; font-weight:bold">
+	You have scrolled the page by:
+</p>
+
+
+
+<script>
+
+var output = document.getElementById('output')
+
+function getDocHeight() {
+    var D = document;
+    return Math.max(
+        D.body.scrollHeight, D.documentElement.scrollHeight,
+        D.body.offsetHeight, D.documentElement.offsetHeight,
+        D.body.clientHeight, D.documentElement.clientHeight
+    )
+}
+
+function amountscrolled(){
+	var winheight= window.innerHeight || (document.documentElement || document.body).clientHeight
+	var docheight = getDocHeight()
+	var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+	var trackLength = docheight - winheight
+	var pctScrolled = Math.floor(scrollTop/trackLength * 100) // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
+	output.innerHTML = 'You have scrolled the page by: ' + pctScrolled +'%'
+}
+
+window.addEventListener("scroll", function(){
+	amountscrolled()
+}, false)
+
+
+
+
+/* ### jQuery version below. Uncomment to see: ### */
+
+/*
+
+var $output = $('#output')
+
+function amountscrolled(){
+	var winheight = $(window).height()
+	var docheight = $(document).height()
+	var scrollTop = $(window).scrollTop()
+	var trackLength = docheight - winheight
+	var pctScrolled = Math.floor(scrollTop/trackLength * 100) // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
+	$output.html( 'You have scrolled the page by: ' + pctScrolled +'%' )
+}
+
+$(window).on("scroll", function(){
+	amountscrolled()
+})
+
+*/
+
+
+</script>
+
+
+
+
+	

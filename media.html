@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3 columns responsive layout</title>
+<!--<link rel="stylesheet" type="text/css" href="3columnlayout.css" />-->
+<style>
+body{
+margin:0;
+padding:0;
+line-height: 1.5em;
+}
+
+b{font-size: 110%;}
+em{color: red;}
+
+#maincontainer{
+width: 840px; /*Width of main container*/
+margin: 0 auto; /*Center container on page*/
+}
+
+#topsection{
+background: black;
+color: white;
+height: 90px; /*Height of top section*/
+}
+
+#topsection h1{
+margin: 0;
+padding-top: 15px;
+}
+
+#contentwrapper{
+float: left;
+width: 100%;
+}
+
+#contentcolumn{
+margin: 0 190px 0 180px; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
+height: 380px;
+}
+
+#leftcolumn{
+float: left;
+width: 180px; /*Width of left column in pixel*/
+height: 380px;
+margin-left: -840px; /*Set margin to that of -(MainContainerWidth)*/
+background: #b6ebe9;
+}
+
+#rightcolumn{
+float: left;
+width: 190px; /*Width of right column*/
+height: 380px;
+margin-left: -190px; /*Set left margin to -(RightColumnWidth)*/
+background: #f1e48f;
+}
+
+#footer{
+clear: left;
+width: 100%;
+background: black;
+color: #FFF;
+text-align: center;
+padding: 4px 0;
+}
+
+#footer a{
+color: #FFFF80;
+}
+
+.innertube{
+margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
+margin-top: 0;
+}
+
+/* ####### responsive layout CSS ####### */
+
+@media (max-width: 840px){ /* 1st level responsive layout break point- drop right column down*/
+	#maincontainer{
+	width: 100%;
+	}
+
+	#leftcolumn{
+	margin-left: -100%;
+	}
+	
+	#rightcolumn{
+	float: none;
+	width: 100%;
+	height: 150px;
+	margin-left: 0;
+	clear: both;
+	}
+	
+	#contentcolumn{
+	margin-right: 0;
+	}
+}
+
+@media (max-width: 600px){ /* 2nd level responsive layout break point- drop left column down */
+	#leftcolumn{
+	float: none;
+	width: 100%;
+	height: 150px;
+	clear: both;
+	margin-left: 0;
+	}
+	
+	#contentcolumn{
+	margin-left: 0;
+	height: 150px;
+	}
+}
+</style>
+</head>
+<body>
+<div id="maincontainer">
+
+<div id="topsection"><div class="innertube"><h1>3 columns responsive layout</h1></div></div>
+
+<div id="contentwrapper">
+<div id="contentcolumn">
+<div class="innertube"><b>Content Column: <em>Fixed</em></b></div>
+</div>
+</div>
+
+<div id="leftcolumn">
+<div class="innertube"><b>Left Column: <em>180px</em></b></div>
+</div>
+
+<div id="rightcolumn">
+<div class="innertube"><b>Right Column: <em>190px</em></b></div>
+</div>
+
+<div id="footer"><a href="https://mahajesus.com/">mahajesus</a></div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<script>
+for (var y=0; y<=10; y++){
+   // alert("hi!")
+}
+</script>
+<script type="text/javascript">
+function cal(){
+    var y=1
+    var temp=prompt("Please input a positive integer:")
+    for (var x=2;x<=temp;x++){
+        y=y+x
+    }
+    alert("1+2+...+"+temp+"="+y)
+}
+function abc()
+{
+console.log('hello');
+}
+console.log('hello');
+//Creating dense arrays
+var myarray=new Array(3)
+myarray[0]="one"
+myarray[1]="two"
+myarray[2]="three"
+console.log(myarray[2]);
+//Writing out the current date and time using dense arrays
+var mydate=new Date()
+var year=mydate.getFullYear()
+var day=mydate.getDay()
+var month=mydate.getMonth()
+var daym=mydate.getDate()
+//if the current date is less than 10, pad it.
+if (daym<10)
+daym="0"+daym
+var dayarray=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+var montharray=new Array("January","February","March","April","May","June","July","August","September","October","November","December")
+//write out the final results
+document.write("<b>"+dayarray[day]+", "+montharray[month]+" "+daym+", "+year+"</b>")
+</script>
+
+<button onlick="abc();">click here</button>

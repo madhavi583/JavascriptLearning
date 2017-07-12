@@ -1,0 +1,89 @@
+<html>
+<head><title>Reading and copying selected text to clipboard using JavaScript</title></head>
+<body>
+<h4>Reading and copying selected text to clipboard using JavaScript</h4>
+<textarea id="name" name="name" rows="10" ></textarea> 
+<script>
+['cut','copy','paste'].forEach(function(event){
+document.addEventListener(event,function(e){
+console.log(event);
+console.log(e);
+});
+});
+
+
+ 
+
+
+</script>
+<!-- another example -->
+<textarea id="quote" cols="50" rows="5">
+Some text here
+</textarea>
+ 
+<div id="output"></div>
+ 
+<script>
+ 
+var quotearea = document.getElementById('quote')
+var output = document.getElementById('output')
+quotearea.addEventListener('mouseup', function(){
+    if (this.selectionStart != this.selectionEnd){ // check the user has selected some text inside field
+        var selectedtext = this.value.substring(this.selectionStart, this.selectionEnd)
+        output.innerHTML = selectedtext
+    }
+}, false)
+ 
+</script>
+<script>
+function copyfieldvalue(e, id){
+    var field = document.getElementById(id)
+    field.focus()
+    field.setSelectionRange(0, field.value.length)
+   /* var copysuccess = copySelectionText()
+    if (copysuccess){
+        showtooltip(e)
+    }*/
+}
+ 
+</script>
+ 
+<fieldset style="max-width:600px">
+    <legend>Share this tutorial</legend>
+    <input id="url" type="text" size="60" value="http://www.javascriptkit.com/javatutors/copytoclipboard.shtml" /> 
+    <a href="#" onClick="copyfieldvalue(event, 'url');return false">Copy</a>
+</fieldset>
+
+<div id="motivatebox" style="overflow: hidden; margin: 1em auto">
+    <div class="motivate">
+    "Just when the caterpillar thought the world was ending, he turned into a butterfly." --Proverb
+    </div>
+ 
+    <div class="motivate">
+    "Great minds discuss ideas; average minds discuss events; small minds discuss people." --Eleanor Roosevelt
+    </div>
+     
+    <div class="motivate">
+    "No one can make you feel inferior without your consent." --Eleanor Roosevelt
+    </div>
+</div>
+ 
+<script>
+ 
+var motivatebox = document.getElementById('motivatebox')
+ 
+motivatebox.addEventListener('mouseup', function(e){
+    var e = e || event // equalize event object between modern and older IE browsers
+    var target = e.target || e.srcElement // get target element mouse is over
+    /*if (target.className == 'motivate'){
+        selectElementText(target) // select the element's text we wish to read
+        var copysuccess = copySelectionText()
+        if (copysuccess){
+            showtooltip(e)
+        }
+    }*/
+}, false)
+ 
+</script>
+</body>
+</html>

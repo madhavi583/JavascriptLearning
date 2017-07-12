@@ -1,0 +1,55 @@
+<html>
+<head>
+<style type="text/css">
+ 
+#abox{
+    width: 250px;
+    height: 100px;
+    background: navy;
+    margin-bottom: 1em;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    opacity: 0;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+ 
+#abox.openbox{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+#someclass{
+color:red;
+}
+#someclass1{
+color:green;
+}
+#someclass2{
+color:yello;
+}
+ 
+</style>
+ 
+</head>
+<body>
+<script type="text/javascript">
+
+element.classList.add("someclass") //adds a class to element
+element.classList.add("someclass1", "someclass1") //adds multiple CSS classes. Not supported in IE11 or FF26 or less.
+ 
+/*element.classList.remove("someclass") //removes a class from element
+element.classList.remove("class1", "class2", etc) //removes multiple CSS classes. Not supported in IE11 or FF26 or less.
+ 
+element.classList.toggle("someclass") //toggles a class. If already exists removes and returns false. Otherwise adds class and returns true
+element.classList.toggle("someclass", expression) // adds or removes "someclass" based on outcome of expression. Not supported in IE11 or FF26 or less.
+ 
+element.classList.contains("someclass") // check if the a class is present inside the element
+*/
+</script>
+<div id="abox"></div>
+ 
+<button onClick="document.getElementById('abox').classList.toggle('openbox')">Show/ Hide</button>
+<button onClick="document.getElementById('abox').classList.add('openbox')">Show/ someclass1</button>
+</body>
+</html>

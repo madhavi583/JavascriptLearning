@@ -1,0 +1,132 @@
+<html>
+<head>
+<title>This is a JavaScript example</title>
+<script language="JavaScript" type="text/javascript">
+<!--
+document.write("madhavi pathapati!");
+document.write("Welcome to mahajesus website!");
+//-->
+//lastModified
+document.write("This page created by prema P. Last update:" + document.lastModified);
+//bgColor and fgColor
+document.bgColor="skyblue"
+document.fgColor="green"
+//alert
+window.alert("Welcome to mahajesus website!");
+//confirm
+window.confirm("Are you sure you want mahajesus site to quit?") 
+//prompt
+window.prompt("please enter user name") 
+//Variables and Conditions
+
+var x=window.confirm("Are you sure you want mahajesus website to quit")
+
+if (x)
+    window.alert("Thank you.")
+else
+    window.alert("Good choice.")
+	//Function
+	function test()
+{
+   document.write("Hello madhavi pathapati can you see me?")
+}
+test() 
+//Event handler
+//onLoad
+//onMouseover,onMouseout
+//onblue
+function emailchk()
+{
+var x=document.feedback.email.value
+if (x.indexOf("@")==-1)
+{
+	alert("It seems you entered an invalid email address.")
+	document.feedback.email.focus()
+}
+}
+//onfocus
+function validate()
+{
+if(document.login.userName.value=="")
+{
+	alert ("Please enter User Name")
+	return false
+}
+if(document.login.password.value=="")
+{
+	alert ("Please enter Password")
+	return false
+}
+}
+</script>
+</head>
+
+<body onload="ss()"> Hi, Prema!
+<frameset onload="ss()">
+<img src="images/home_register_bg.gif" onload="ss()">
+<a href="#" onMouseOver="document.write('Hi, nice to see you!">Over Here!</a>
+<a href="#" onMouseOut="alert('Good try!')">Get Out Here!</a>
+<!-- Handle multiple actions -->
+<form>
+<input type="button" value="Click here!" onClick="alert('Thanks
+for visiting my site!');window.location='https://mahajesus.com/'">
+</form>
+<!-- onBlur-->
+<form
+
+name="feedback">
+Email:<input type="text" size="20" name="email"
+
+onblur="emailchk()"><br>
+Comment: <textarea name="comment" rows="2" cols="20"></textarea><br>
+<input type="submit" value="Submit">
+</form>
+<form name="login" onsubmit="return validate()">
+<input type="text" size="20" name="userName">
+<input type="text" size="20" name="password">
+<input type="submit" name="submit" value="Submit">
+</form>
+<!--Link -->
+<a href="JavaScript:window.location.reload()">Click to reload!</a>
+<a href="#" onClick="alert('Hello, world!')">Click me to say Hello</a><br>
+<a href="#" onMouseOver="location='main.htm'">Mouse over to see Main Page</a>
+<!-- Date-->
+<SCRIPT LANGUAGE="JavaScript">
+var x= new Date();
+document.write (x);
+</SCRIPT>
+<!-- Dynamically display different pages-->
+<script>
+var banTime= new Date()
+var ss=banTime.getHours()
+if (ss<=12)
+	document.write("<img src='images/home_register_bg.gif'>")
+else
+	document.write("<img src='images/dog4.png'>") 
+</script>
+<!-- Window-->
+<form>
+<input type="button" value="Click here to see" onclick="window.open('CopyText.html')">
+</form> 
+<!-- opener-->
+<form>
+<input type="button" value="Open another page"
+
+onClick="aa=window.open('CopyText.html','','width=100,height=200')">
+</form>
+<!--Remote Control Window -->
+<form>
+<input type="button" value="Open another page"
+
+onClick="aa=window.open('test.htm','','width=200,height=200')">
+<input type="radio" name="x" onClick="aa.document.bgColor='red'">
+<input type="radio" name="x" onClick="aa.document.bgColor='green'">
+<input type="radio" name="x" onClick="aa.document.bgColor='yellow'">
+</form>
+<!-- Close Window-->
+<form>
+<input type="button" value="Close Window" onClick="window.close()">
+</form>
+<a href="javascript:window.close()">Close Window</a>
+ </body>
+</html>

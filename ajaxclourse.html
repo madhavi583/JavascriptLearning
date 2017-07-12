@@ -1,0 +1,113 @@
+<script>
+
+
+function foo(bar) {
+    for(var i = 0; i < 3; i++) {
+        $.ajax({
+            type : "GET",
+            url : ajaxobj.html,
+            dataType : "jsonp",
+            success : callback(i)
+        });
+    }
+};
+var callback = function(index) {
+    return function(data) {
+        console.log(index + ":" + data);
+    }
+} 
+var foo = (function() {
+    var privateVar = 0;
+    function privateFunc() {
+        privateVar++;
+    }
+    return {
+        publicGet: function() {
+            return privateVar;
+        },
+        publicSet: function() {
+            privateFunc();
+        }
+    }
+})();
+
+console.log(foo.publicGet); // 0
+console.log(foo.publicSet);
+console.log(foo.publicGet); // 1
+
+function foo1 (callback){
+    $.ajax({
+    type:"POST",
+    url:"javascript/invoice.php",
+    data: dataString,
+    success: callback
+    });//end ajax
+    alert (dada);
+}
+
+function mycallback (result){
+    array=result.split('/');
+    alert(dada);
+}
+//closure
+var gLogNumber, gIncreaseNumber, gSetNumber;
+function setupSomeGlobals() {
+  // Local variable that ends up within closure
+  var num = 42;
+  // Store some references to functions as global variables
+  gLogNumber = function() { console.log(num); }
+  gIncreaseNumber = function() { num++; }
+  gSetNumber = function(x) { num = x; }
+}
+
+setupSomeGlobals();
+gIncreaseNumber();
+gLogNumber(); // 43
+gSetNumber(5);
+gLogNumber(); // 5
+
+var oldLog = gLogNumber;
+
+setupSomeGlobals();
+gLogNumber(); // 42
+
+oldLog() // 5
+// another examplem
+
+</script>
+
+<style>
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+</style>
+	<script>
+	function makeSizer(size) {
+  return function() {
+    document.body.style.fontSize = size + 'px';
+  };
+}
+
+var size12 = makeSizer(12);
+var size14 = makeSizer(14);
+var size16 = makeSizer(16);
+
+document.getElementById('size-12').onclick = size12;
+document.getElementById('size-14').onclick = size14;
+document.getElementById('size-16').onclick = size16;
+
+	</script>
+	<body>
+ <p>joanna pathapati</p>
+    <h1>madhavi pathapati</h1>
+    <h2>prema madhavi</h2>
+
+    <a href="#" id="size-12">12</a>
+    <a href="#" id="size-14">14</a>
+    <a href="#" id="size-16">16</a>
+	</body>
