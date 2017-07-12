@@ -26,4 +26,21 @@ var Test = (function(){
           { "foo": "bar" }
      );
 }());
+//Compression - Prototype Method
+function Book(title) {
+    this.title = title;
+}
+
+Book.prototype.getTitle = function () {
+  return this.title;
+};
+//Compression - Closure Method
+function Book(title) {
+  var title = title; // use var instead of this.title to make this a local variable
+
+this.getTitle = function () {
+  return title;
+};
+}
+
 </script>
